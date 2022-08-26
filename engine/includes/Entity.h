@@ -35,5 +35,7 @@ public:
     SDL_Texture* getTex(int p_index);
     SDL_Rect getCurrentFrame();
     void setTex(SDL_Texture* p_tex);
+    bool checkCollision(Entity& p_entity);
+    void destroy();
 };
 #endif //GAME_ENTITY_H

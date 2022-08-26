@@ -1,7 +1,7 @@
 
 
-#ifndef GAME_KEYBOARD_H
-#define GAME_KEYBOARD_H
+#ifndef GAME_INPUT_H
+#define GAME_INPUT_H
 
 #include <SDL_events.h>
 
@@ -125,4 +125,4 @@ public:
 
 };
 
-#endif //GAME_KEYBOARD_H
+#endif //GAME_INPUT_H

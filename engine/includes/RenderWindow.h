@@ -12,6 +12,8 @@ class RenderWindow
 public:
     SDL_Window* window;
     SDL_Renderer* renderer;
+    int SCREENWIDTH;
+    int SCREENHEIGHT;
 
 
     RenderWindow();
@@ -21,8 +23,10 @@ public:
     void render(Entity& p_entity);
     void render(float p_x, float p_y, SDL_Texture* p_tex);
     void render(SDL_Texture* p_tex);
+    void render(int x, int y, Texture p_tex);
     void render(float p_x, float p_y, const char* p_text, TTF_Font* font, SDL_Color textColor);
     void renderCenter(float p_x, float p_y, const char* p_text, TTF_Font* font, SDL_Color textColor);
+
     void display();
     void cleanUp();
 

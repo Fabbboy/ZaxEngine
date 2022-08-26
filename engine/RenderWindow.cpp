@@ -6,8 +6,7 @@
 #include "includes/RenderWindow.h"
 #include "includes/Entity.h"
 
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 480;
+
 
 RenderWindow::RenderWindow()
 {
@@ -22,6 +21,8 @@ void RenderWindow::create(const char* p_title, int p_w, int p_h)
         std::cout << "Window failed to init. Error: " << SDL_GetError() << std::endl;
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    SCREENHEIGHT = p_h;
+    SCREENWIDTH = p_w;
 }
 
 
@@ -117,8 +118,8 @@ void RenderWindow::renderCenter(float p_x, float p_y, const char* p_text, TTF_Fo
     src.h = surfaceMessage->h;
 
     SDL_Rect dst;
-    dst.x = SCREEN_WIDTH/2 - src.w/2 + p_x;
-    dst.y = SCREEN_HEIGHT/2 - src.h/2 + p_y;
+    dst.x = SCREENWIDTH/2 - src.w/2 + p_x;
+    dst.y = SCREENHEIGHT/2 - src.h/2 + p_y;
     dst.w = src.w;
     dst.h = src.h;
 
@@ -142,3 +143,19 @@ TTF_Font *RenderWindow::loadFont(const char *p_filePath, int p_size) {
         std::cout << "Failed to load font. Error: " << TTF_GetError() << std::endl;
     return font;
 }
+
+void RenderWindow::render(int x, int y, Texture p_tex) {
+    SDL_Rect src;
+    src.x = 0;
+    src.y = 0;
+    SDL_QueryTexture(p_tex.getTex(), NULL, NULL, &src.w, &src.h);
+
+    SDL_Rect dst;
+    dst.x = x;
+    dst.y = y;
+    dst.w = src.w;
+    dst.h = src.h;
+
+    SDL_RenderCopy(renderer, p_tex.getTex(), &src, &dst);
+}
+

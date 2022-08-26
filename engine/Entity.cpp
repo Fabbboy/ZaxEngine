@@ -123,3 +123,16 @@ Entity::Entity(float p_x, float p_y, Texture p_tex) {
         animOffsetsY.push_back(0);
     }
 }
+
+bool Entity::checkCollision(Entity &p_entity) {
+    if (getX() + getWidth() > p_entity.getX() && getX() < p_entity.getX() + p_entity.getWidth() && getY() + getHeight() > p_entity.getY() && getY() < p_entity.getY() + p_entity.getHeight()) {
+        return true;
+    }
+    return false;
+}
+
+void Entity::destroy() {
+    for (int i = 0; i < getSize(); i++) {
+        SDL_DestroyTexture(tex.at(i));
+    }
+}
