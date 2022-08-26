@@ -4,6 +4,7 @@
 #include "engine/includes/utils.h"
 #include "engine/includes/Input.h"
 #include "engine/includes/Texture.h"
+#include "engine/includes/Font.h"
 #include <iostream>
 
 
@@ -16,7 +17,7 @@ int main()
     window.create("Game", 1000, 600);
     Texture test(window.renderer, window.loadTexture("/Users/Fabboy/CLionProject/game/assets/test.png"), SDL_Rect(),
                  SDL_Rect());
-    //Font font(window.renderer,window.loadFont("/Users/Fabboy/CLionProject/game/assets/font.ttf"));
+    Font fonte(window.renderer,window.loadFont("/Users/Fabboy/CLionProject/game/assets/font.ttf", 20));
 
     bool running = true;
     while(running)
@@ -29,7 +30,7 @@ int main()
                 running = false;
         }
         window.clear();
-        window.renderCenter(0,0,"Hello World",window.loadFont("/Users/Fabboy/CLionProject/game/assets/font.ttf", 20),{255,255,255});
+        window.renderCenter(0,0,"Hello World",fonte.font,{255,255,255});
 
         window.display();
     }
