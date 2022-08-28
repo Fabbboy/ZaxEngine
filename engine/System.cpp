@@ -4,9 +4,17 @@
 #include <cstdlib>
 #include <SDL_timer.h>
 #include "includes/System.h"
+#include <filesystem>
+#include <SDL2/SDL.h>
+
+//namespace filesystem as fs
+using namespace std::__fs::filesystem;
 
 Debug::Debug() {
-
+    //create dir DebugLog if not exists
+    if (!exists("DebugLog")) {
+        create_directory("DebugLog");
+    }
 }
 
 void Debug::log(const char *p_text, ...) {
@@ -54,5 +62,15 @@ void Debug::endTimer() const {
     printf("Time taken: %d ms\n", endTime - startTime);
     printf("\033[0m");
 }
+
+void Debug::takeScreenshot(RenderWindow Window) {
+    SDL_Surface *screenshot = SDL_CreateRGBSurface(0, Window.SCREENWIDTH, Window.SCREENHEIGHT, 32, 0x00ff0000, 0x0000ff00, 0x000000ff, 0xff000000);
+    SDL_RenderReadPixels(Window.renderer, nullptr, SDL_PIXELFORMAT_ARGB8888, screenshot->pixels, screenshot->pitch);
+    long timestamp = SDL_GetTicks();
+    //store screen at DebugLog/Screenshot-timestamp.bmp
+    SDL_SaveBMP(screenshot, ("DebugLog/Screenshot-" + std::to_string(timestamp) + ".bmp").c_str());
+    SDL_FreeSurface(screenshot);
+}
+
 
 Debug::~Debug() = default;
