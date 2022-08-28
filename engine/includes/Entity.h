@@ -5,6 +5,7 @@
 #include <SDL2/SDL_image.h>
 #include <vector>
 #include "Texture.h"
+#include "Input.h"
 
 class Entity
 {
@@ -37,5 +38,8 @@ public:
     void setTex(SDL_Texture* p_tex);
     bool checkCollision(Entity& p_entity);
     void destroy();
+
+    bool isHover(Input input);
+    bool isClicked(Input input, Mouse key);
 };
 #endif //GAME_ENTITY_H

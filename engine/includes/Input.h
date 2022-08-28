@@ -4,6 +4,7 @@
 #define GAME_INPUT_H
 
 #include <SDL_events.h>
+#include "Vector.h"
 
 
 enum Keyboard{
@@ -117,11 +118,12 @@ public:
     float getMouseX();
     float getMouseY();
     bool isMouseDown(Mouse button);
+    int* getMouseClick(Mouse button);
     bool isMouseUp(Mouse button);
     bool isMouseDownInRange(float x, float y, float w, float h, Mouse button);
     SDL_Scancode getPressedMouse();
 
-    int* getMousePosition();
+    int * getMousePosition();
 
 };
 

@@ -6,6 +6,7 @@
 #include <SDL2/SDL_ttf.h>
 
 #include "entity.h"
+#include "Text.h"
 
 class RenderWindow
 {
@@ -24,6 +25,7 @@ public:
     void render(float p_x, float p_y, SDL_Texture* p_tex);
     void render(SDL_Texture* p_tex);
     void render(int x, int y, Texture p_tex);
+    void render(int x, int y, Text p_tex);
     void render(float p_x, float p_y, const char* p_text, TTF_Font* font, SDL_Color textColor);
     void renderCenter(float p_x, float p_y, const char* p_text, TTF_Font* font, SDL_Color textColor);
 
@@ -33,4 +35,6 @@ public:
     TTF_Font* loadFont(const char* p_filePath, int p_size);
     //override function "onUpdate" that will be called every frame
 };
+
+
 #endif //GAME_RENDERWINDOW_H

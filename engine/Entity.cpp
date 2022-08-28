@@ -136,3 +136,20 @@ void Entity::destroy() {
         SDL_DestroyTexture(tex.at(i));
     }
 }
+
+bool Entity::isHover(Input input) {
+    Vector2f currentEntityPosition = Vector2f(getX(), getY());
+    int* mousePosition = input.getMousePosition();
+    Vector2f mousePositionVector = Vector2f(mousePosition[0], mousePosition[1]);
+    if (mousePositionVector.x > currentEntityPosition.x && mousePositionVector.x < currentEntityPosition.x + getWidth() && mousePositionVector.y > currentEntityPosition.y && mousePositionVector.y < currentEntityPosition.y + getHeight()) {
+        return true;
+    }
+    return false;
+}
+
+bool Entity::isClicked(Input input, Mouse key) {
+    if (input.isMouseDown(key) && isHover(input)) {
+        return true;
+    }
+    return false;
+}

@@ -5,7 +5,7 @@
 
 #include "includes/RenderWindow.h"
 #include "includes/Entity.h"
-
+#include "includes/Text.h"
 
 
 RenderWindow::RenderWindow()
@@ -145,6 +145,21 @@ TTF_Font *RenderWindow::loadFont(const char *p_filePath, int p_size) {
 }
 
 void RenderWindow::render(int x, int y, Texture p_tex) {
+    SDL_Rect src;
+    src.x = 0;
+    src.y = 0;
+    SDL_QueryTexture(p_tex.getTex(), NULL, NULL, &src.w, &src.h);
+
+    SDL_Rect dst;
+    dst.x = x;
+    dst.y = y;
+    dst.w = src.w;
+    dst.h = src.h;
+
+    SDL_RenderCopy(renderer, p_tex.getTex(), &src, &dst);
+}
+
+void RenderWindow::render(int x, int y, Text p_tex) {
     SDL_Rect src;
     src.x = 0;
     src.y = 0;

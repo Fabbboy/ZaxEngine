@@ -108,3 +108,14 @@ int *Input::getMousePosition() {
     return mousePosition;
 }
 
+int* Input::getMouseClick(Mouse button) {
+ //if mouse button is clicked return position of mouse
+    if(SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(button)) {
+        int *mousePosition = new int[2];
+        SDL_GetMouseState(&mousePosition[0], &mousePosition[1]);
+        return mousePosition;
+    } else {
+        return NULL;
+    }
+}
+
