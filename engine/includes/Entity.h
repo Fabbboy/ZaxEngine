@@ -16,9 +16,8 @@ private:
     SDL_Rect currentFrame;
     std::vector<SDL_Texture*> tex;
 public:
-    Entity(float p_x, float p_y, std::vector<SDL_Texture*> p_tex);
-    Entity(float p_x, float p_y, SDL_Texture* p_tex);
-    Entity(float p_x, float p_y, Texture p_tex);
+    Entity(Vector2f pos, std::vector<SDL_Texture*> p_tex);
+    Entity(Vector2f pos, SDL_Texture* p_tex);
     void init();
     float getX();
     float getY();

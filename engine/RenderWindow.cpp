@@ -64,7 +64,8 @@ void RenderWindow::render(Entity& p_entity)
     }
 }
 
-void RenderWindow::render(float p_x, float p_y, SDL_Texture* p_tex)
+
+void RenderWindow::render(Vector2f pos,SDL_Texture* p_tex)
 {
     SDL_Rect src;
     src.x = 0;
@@ -72,20 +73,15 @@ void RenderWindow::render(float p_x, float p_y, SDL_Texture* p_tex)
     SDL_QueryTexture(p_tex, NULL, NULL, &src.w, &src.h);
 
     SDL_Rect dst;
-    dst.x = p_x;
-    dst.y = p_y;
+    dst.x = pos.x;
+    dst.y = pos.y;
     dst.w = src.w;
     dst.h = src.h;
 
     SDL_RenderCopy(renderer, p_tex, &src, &dst);
 }
 
-void RenderWindow::render(SDL_Texture* p_tex)
-{
-    render(0, 0, p_tex);
-}
-
-void RenderWindow::render(float p_x, float p_y, const char* p_text, TTF_Font* font, SDL_Color textColor)
+void RenderWindow::render(Vector2f pos,const char* p_text, TTF_Font* font, SDL_Color textColor)
 {
     SDL_Surface* surfaceMessage = TTF_RenderText_Blended( font, p_text, textColor);
     SDL_Texture* message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
@@ -97,8 +93,8 @@ void RenderWindow::render(float p_x, float p_y, const char* p_text, TTF_Font* fo
     src.h = surfaceMessage->h;
 
     SDL_Rect dst;
-    dst.x = p_x;
-    dst.y = p_y;
+    dst.x = pos.x;
+    dst.y = pos.y;
     dst.w = src.w;
     dst.h = src.h;
 
@@ -106,7 +102,7 @@ void RenderWindow::render(float p_x, float p_y, const char* p_text, TTF_Font* fo
     SDL_FreeSurface(surfaceMessage);
 }
 
-void RenderWindow::renderCenter(float p_x, float p_y, const char* p_text, TTF_Font* font, SDL_Color textColor)
+void RenderWindow::renderCenter(Vector2f pos, const char* p_text, TTF_Font* font, SDL_Color textColor)
 {
     SDL_Surface* surfaceMessage = TTF_RenderText_Blended( font, p_text, textColor);
     SDL_Texture* message = SDL_CreateTextureFromSurface(renderer, surfaceMessage);
@@ -118,8 +114,8 @@ void RenderWindow::renderCenter(float p_x, float p_y, const char* p_text, TTF_Fo
     src.h = surfaceMessage->h;
 
     SDL_Rect dst;
-    dst.x = SCREENWIDTH/2 - src.w/2 + p_x;
-    dst.y = SCREENHEIGHT/2 - src.h/2 + p_y;
+    dst.x = SCREENWIDTH/2 - src.w/2 + pos.x;
+    dst.y = SCREENHEIGHT/2 - src.h/2 + pos.y;
     dst.w = src.w;
     dst.h = src.h;
 
@@ -144,30 +140,16 @@ TTF_Font *RenderWindow::loadFont(const char *p_filePath, int p_size) {
     return font;
 }
 
-void RenderWindow::render(int x, int y, Texture p_tex) {
+
+void RenderWindow::render(Vector2f pos, Text p_tex) {
     SDL_Rect src;
     src.x = 0;
     src.y = 0;
     SDL_QueryTexture(p_tex.getTex(), NULL, NULL, &src.w, &src.h);
 
     SDL_Rect dst;
-    dst.x = x;
-    dst.y = y;
-    dst.w = src.w;
-    dst.h = src.h;
-
-    SDL_RenderCopy(renderer, p_tex.getTex(), &src, &dst);
-}
-
-void RenderWindow::render(int x, int y, Text p_tex) {
-    SDL_Rect src;
-    src.x = 0;
-    src.y = 0;
-    SDL_QueryTexture(p_tex.getTex(), NULL, NULL, &src.w, &src.h);
-
-    SDL_Rect dst;
-    dst.x = x;
-    dst.y = y;
+    dst.x = pos.x;
+    dst.y = pos.y;
     dst.w = src.w;
     dst.h = src.h;
 

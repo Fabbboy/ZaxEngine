@@ -8,7 +8,7 @@
 
 class Texture {
 public:
-    Texture(SDL_Renderer *p_renderer, SDL_Texture *texture, SDL_Rect rect, SDL_Rect sdlRect);
+    Texture(SDL_Texture *texture);
     ~Texture();
     SDL_Texture* getTex();
 

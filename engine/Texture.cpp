@@ -2,7 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include "includes/Texture.h"
 
-Texture::Texture(SDL_Renderer *p_renderer, SDL_Texture *texture, SDL_Rect rect, SDL_Rect sdlRect) {
+Texture::Texture(SDL_Texture *texture) {
     this->texture = texture;
 }
 

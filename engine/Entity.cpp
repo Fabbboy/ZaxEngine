@@ -4,8 +4,8 @@
 #include "includes/Entity.h"
 
 
-Entity::Entity(float p_x, float p_y, std::vector<SDL_Texture*> p_tex)
-        :x(p_x), y(p_y), tex(p_tex)
+Entity::Entity(Vector2f pos, std::vector<SDL_Texture*> p_tex)
+        :x(pos.x), y(pos.y), tex(p_tex)
 {
     currentFrame.x = 0;
     currentFrame.y = 0;
@@ -17,8 +17,8 @@ Entity::Entity(float p_x, float p_y, std::vector<SDL_Texture*> p_tex)
     }
 }
 
-Entity::Entity(float p_x, float p_y, SDL_Texture* p_tex)
-        :x(p_x), y(p_y)
+Entity::Entity(Vector2f pos, SDL_Texture* p_tex)
+        :x(pos.x), y(pos.y)
 {
     tex.push_back(p_tex);
     currentFrame.x = 0;
@@ -110,19 +110,6 @@ void Entity::setWidth(float p_y) {
 
 }
 
-Entity::Entity(float p_x, float p_y, Texture p_tex) {
-    x = p_x;
-    y = p_y;
-    tex.push_back(p_tex.getTex());
-    currentFrame.x = 0;
-    currentFrame.y = 0;
-    SDL_QueryTexture(p_tex.getTex(), NULL, NULL, &currentFrame.w, &currentFrame.h);
-    for (int i = 0; i < getSize(); i++)
-    {
-        animOffsetsX.push_back(0);
-        animOffsetsY.push_back(0);
-    }
-}
 
 bool Entity::checkCollision(Entity &p_entity) {
     if (getX() + getWidth() > p_entity.getX() && getX() < p_entity.getX() + p_entity.getWidth() && getY() + getHeight() > p_entity.getY() && getY() < p_entity.getY() + p_entity.getHeight()) {

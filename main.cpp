@@ -11,15 +11,14 @@
 
 
 RenderWindow window;
-Input keyboard;
+Input input;
 int main()
 {
     init();
     window.create("Game", 1000, 600);
-    Texture test(window.renderer, window.loadTexture("/Users/Fabboy/CLionProject/game/assets/test.png"), SDL_Rect(),
-                 SDL_Rect());
-    Font fonte(window.renderer,window.loadFont("/Users/Fabboy/CLionProject/game/assets/font.ttf", 20));
-    Entity background(0, 0, window.loadTexture("/Users/Fabboy/CLionProject/game/assets/test.png"));
+    Texture test(window.loadTexture("/Users/Fabboy/CLionProjects/ZaxEngine/assets/Ape.png"));
+    Font fonte(window.loadFont("/Users/Fabboy/CLionProjects/ZaxEngine/assets/font.ttf", 20));
+    Entity background(Vector2f(0,0), test.texture);
 
     bool running = true;
     while(running)
@@ -32,12 +31,10 @@ int main()
                 running = false;
         }
         window.clear();
-        //Vector2f position,SDL_Renderer* p_renderer, const char* p_text, TTF_Font* p_font, SDL_Color p_color
-        Text text(Vector2f(100,100),window.renderer,"Hello World",fonte.font, Red);
-        window.render(0,0,text);
+        //render entity
         window.render(background);
-        if(background.isClicked(keyboard, Mouse_Left))
-            std::cout << "clicked" << std::endl;
+        //render text
+        window.render(Vector2f(0,0), "Hello World", fonte.font, White);
 
 
         window.display();

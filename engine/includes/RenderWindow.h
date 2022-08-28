@@ -4,8 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-
-#include "entity.h"
+#include "Entity.h"
 #include "Text.h"
 
 class RenderWindow
@@ -22,12 +21,10 @@ public:
     SDL_Texture* loadTexture(const char* p_filePath);
     void clear();
     void render(Entity& p_entity);
-    void render(float p_x, float p_y, SDL_Texture* p_tex);
-    void render(SDL_Texture* p_tex);
-    void render(int x, int y, Texture p_tex);
-    void render(int x, int y, Text p_tex);
-    void render(float p_x, float p_y, const char* p_text, TTF_Font* font, SDL_Color textColor);
-    void renderCenter(float p_x, float p_y, const char* p_text, TTF_Font* font, SDL_Color textColor);
+    void render(Vector2f pos,SDL_Texture* p_tex);
+    void render(Vector2f pos, Text p_tex);
+    void render(Vector2f pos, const char* p_text, TTF_Font* font, SDL_Color textColor);
+    void renderCenter(Vector2f pos, const char* p_text, TTF_Font* font, SDL_Color textColor);
 
     void display();
     void cleanUp();

@@ -10,10 +10,8 @@
 class Font {
 
 public:
-    Font(SDL_Renderer *pRenderer, TTF_Font *pFont);
+    Font(TTF_Font *pFont);
     ~Font();
-
-    SDL_Renderer *renderer;
     TTF_Font *font;
 };
 

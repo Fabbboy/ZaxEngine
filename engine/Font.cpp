@@ -1,8 +1,7 @@
 
 #include "includes/Font.h"
 
-Font::Font(SDL_Renderer *pRenderer, TTF_Font *pFont) {
-    renderer = pRenderer;
+Font::Font(TTF_Font *pFont) {
     font = pFont;
 }
 
