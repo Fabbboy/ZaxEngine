@@ -5,7 +5,7 @@
 
 #include "includes/RenderWindow.h"
 #include "includes/Entity.h"
-#include "includes/Text.h"
+#include "includes/UI/Text.h"
 
 
 RenderWindow::RenderWindow()
@@ -23,6 +23,8 @@ void RenderWindow::create(const char* p_title, int p_w, int p_h)
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     SCREENHEIGHT = p_h;
     SCREENWIDTH = p_w;
+    //deactive all lightings
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_NONE);
 }
 
 
@@ -155,4 +157,3 @@ void RenderWindow::render(Vector2f pos, Text p_tex) {
 
     SDL_RenderCopy(renderer, p_tex.getTex(), &src, &dst);
 }
-

@@ -5,8 +5,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <string>
-#include "Input.h"
-#include "Vector.h"
+#include "../Input.h"
+#include "../Vector.h"
 
 class Text{
 public:
